@@ -19,4 +19,5 @@ let transactions = dummyTransactions;
 
 function addTransactionDOM(transaction){
     const sign = transaction.amount < 0 ? "-" : "+";
+    const li = document.createElemen("li");
 }
