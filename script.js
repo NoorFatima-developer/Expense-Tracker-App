@@ -1,6 +1,8 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 const balance = document.getElementById('balance');
-const money_plus = document.getElementById('money_plus');
-const money_minus = document.getElementById('money_minus');
+const money_plus = document.getElementById('money-plus');
+const money_minus = document.getElementById('money-minus');
 const list = document.getElementById('list');
 const delete_btn = document.getElementById('delete-btn');
 const form = document.getElementById('form');
@@ -30,7 +32,7 @@ function addTransactionDOM(transaction){
     <button class = "delete-btn" onclick = "">X</button>
     `
 
-    list.innerHTML = "";
+    // list.innerHTML = "";
     list.appendChild(item);
 }
 
@@ -43,8 +45,8 @@ function updateValues(){
     const income = amounts.filter(item => item > 0).reduce((acc,item) => (acc += item), 0).toFixed(2);
     // - amount ko filter kr rha hai...
     // * -1: Yeh multiplication ensure karta hai ke tumhara result number type mein ho. (Optional hai)
-    const expense = amounts.filter(item => item < 0).reduce((acc,item) => ((acc += item), 0) * -1).toFixed(2);
-
+    // -1 sy multiply krny sy ye always +ve value e return kryga... lkin aghr m 1 sy multiply krti o tu iska mtlb hai wo string value ko hmesha integer m e convert kryga lkin ye optional h secure case m...
+    const expense = (amounts.filter(item => item < 0).reduce((acc, item) => acc + item, 0) * -1).toFixed(2);
     balance.innerHTML = `$${total}`;
     money_plus.innerHTML = `$${income}`;
     money_minus.innerHTML = `$${expense}`;
@@ -53,6 +55,7 @@ function updateValues(){
 form.addEventListener('submit', addTransaction);
 
 function addTransaction(event) {
+    // page ko refresh sy rokna
     event.preventDefault();
 
     if(text.value.trim() === '' || amount.value.trim() === '') {
@@ -62,6 +65,7 @@ function addTransaction(event) {
     const transaction = {
         id: generateID(),
         text: text.value,
+        //amount: +amount.value convert string value into integer e.g; value = "10", change to 10...
         // amount: +amount.value,
         amount: parseFloat(amount.value)
     }
@@ -70,6 +74,7 @@ function addTransaction(event) {
     updateValues();
     text.value = '';
     amount.value = '';
+   
 }
 }
 
@@ -85,7 +90,7 @@ function displayTransactions() {
     updateValues();
 }
 
-
+})
 
 // addTransactionDOM(transactions[0]);
 // displayTransactions(transactions);
