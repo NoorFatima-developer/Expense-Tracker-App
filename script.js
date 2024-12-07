@@ -22,6 +22,7 @@ function addTransactionDOM(transaction){
 
     const item = document.createElement("li");
     item.classList.add(transaction.amount < 0 ? "minus" : "plus");
+    // Math.abs ka mtlb hai k aghr number "-" b hai tb b wo "+" values hi return kryga
     item.innerHTML = `
     ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}</span>
     <button class = "delete-btn" onclick = "">X</button>
@@ -30,17 +31,20 @@ function addTransactionDOM(transaction){
 }
 
 function updateValues(){
-    const amounts = transaction.map(transaction => transaction.amount);
-    const total = amounts.reduce((acc,item) => (acc +=item), 0).forFixed(2);
-    const income = amounts.filter(item => item > 0).reduce((acc,item)=> (acc += item), 0).toFixed(2);
+    // sari amounts ko lek araha hai and onko map k throught 1 new array m dal rha hai...
+    const amounts = transactions.map(transaction => transaction.amount);
+    // sari amounts ko add kr rha hai...
+    const total = amounts.reduce((acc,item) => (acc +=item), 0).toFixed(2);
+    // + amount ko filter kr rha hai...
+    const income = amounts.filter(item => item > 0).reduce((acc,item) => (acc += item), 0).toFixed(2);
+    // - amount ko filter kr rha hai...
+    const expense = amounts.tofilter(item => item < 0).reduce((acc,item) => (acc += item), 0) * 1;
 }
 
 function displayTransactions() {
     list.innerHTML = ""; // Clear the list before adding items
     transactions.forEach(addTransactionDOM);
 }
-
-
 
 displayTransactions(transactions);
 
