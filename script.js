@@ -29,11 +29,18 @@ function addTransactionDOM(transaction){
     // Math.abs ka mtlb hai k aghr number "-" b hai tb b wo "+" values hi return kryga
     item.innerHTML = `
     ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}</span>
-    <button class = "delete-btn" onclick = "">X</button>
+    <button class = "delete-btn" onclick = "removeTransaction(${transaction.id})">X</button>
     `
 
     // list.innerHTML = "";
     list.appendChild(item);
+}
+
+
+// remove Transaction
+removeTransaction = function(id){
+    transactions = transactions.filter((transaction) => transaction.id !== id);
+    displayTransactions();
 }
 
 function updateValues(){
