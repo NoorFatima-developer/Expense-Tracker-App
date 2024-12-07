@@ -27,7 +27,7 @@ body {
 }
 
 h1 {
-    letter-spacing: 10px;
+    letter-spacing: 1px;
     margin: 0;
 }
 
@@ -84,4 +84,18 @@ h4 {
 
 .money-minus{
     color: #c0392b
+}
+
+label {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+input[type="text"], input[type="number"]{
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
 }
