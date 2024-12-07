@@ -8,14 +8,16 @@ const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 const btn = document.getElementById('btn');
 
-const dummyTransactions = [
-    { id:1, text: "Salaray", amount: 300},
-    { id:2, text: "Groceries", amount: -100},
-    { id:3, text: "Rent", amount: -500},
-    { id:4, text: "Credit Card", amount: 250}
-]
+// const dummyTransactions = [
+//     { id:1, text: "Salaray", amount: 300},
+//     { id:2, text: "Groceries", amount: -100},
+//     { id:3, text: "Rent", amount: -500},
+//     { id:4, text: "Credit Card", amount: 250}
+// ]
 
-let transactions = dummyTransactions;
+// let transactions = dummyTransactions;
+
+let transactions = [];
 
 function addTransactionDOM(transaction){
     const sign = transaction.amount < 0 ? "-" : "+";
@@ -27,6 +29,8 @@ function addTransactionDOM(transaction){
     ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}</span>
     <button class = "delete-btn" onclick = "">X</button>
     `
+
+    list.innerHTML = "";
     list.appendChild(item);
 }
 
@@ -38,7 +42,7 @@ function updateValues(){
     // + amount ko filter kr rha hai...
     const income = amounts.filter(item => item > 0).reduce((acc,item) => (acc += item), 0).toFixed(2);
     // - amount ko filter kr rha hai...
-    // * 1: Yeh multiplication ensure karta hai ke tumhara result number type mein ho. (Optional hai)
+    // * -1: Yeh multiplication ensure karta hai ke tumhara result number type mein ho. (Optional hai)
     const expense = amounts.filter(item => item < 0).reduce((acc,item) => ((acc += item), 0) * -1).toFixed(2);
 
     balance.innerHTML = `$${total}`;
@@ -46,15 +50,46 @@ function updateValues(){
     money_minus.innerHTML = `$${expense}`;
 }
 
+form.addEventListener('submit', addTransaction);
+
+function addTransaction(event) {
+    event.preventDefault();
+
+    if(text.value.trim() === '' || amount.value.trim() === '') {
+        alert('Please enter text and amount');
+        return;  
+}else {
+    const transaction = {
+        id: generateID(),
+        text: text.value,
+        // amount: +amount.value,
+        amount: parseFloat(amount.value)
+    }
+    transactions.push(transaction);
+    addTransactionDOM(transaction);
+    updateValues();
+    text.value = '';
+    amount.value = '';
+}
+}
+
+// Generate by-default id:
+
+function generateID(){
+    return Math.floor(Math.random() * 100000000);
+}
 
 function displayTransactions() {
     list.innerHTML = ""; // Clear the list before adding items
     transactions.forEach(addTransactionDOM);
+    updateValues();
 }
 
-displayTransactions(transactions);
 
-// addTransactionDOM(transactions);
+
+// addTransactionDOM(transactions[0]);
+// displayTransactions(transactions);
+
 
 // Summary of map, reduce, filter usage:
 // map tumhare array ko transform karta hai (sari amounts ko ek naye array mein daalna).
