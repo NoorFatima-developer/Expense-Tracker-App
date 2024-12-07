@@ -16,3 +16,7 @@ const dummyTransactions = [
 ]
 
 let transactions = dummyTransactions;
+
+function addTransactionDOM(transaction){
+    const sign = transaction.amount < 0 ? "-" : "+";
+}
