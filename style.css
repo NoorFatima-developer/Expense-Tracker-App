@@ -71,3 +71,17 @@ h4 {
 .inc-exp-container > div:nth-child(1) {
     border-right: 1px solid #dedede;
 }
+
+.money {
+    font-size: 2;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+
+.money-plus{
+    color: #2ecc71;
+}
+
+.money-minus{
+    color: #c0392b
+}
