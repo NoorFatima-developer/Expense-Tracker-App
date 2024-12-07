@@ -9,5 +9,10 @@ const amount = document.getElementById('amount');
 const btn = document.getElementById('btn');
 
 const dummyTransactions = [
-    { id:1, text: "Flower", amount: -20}
+    { id:2, text: "Salaray", amount: 300},
+    { id:3, text: "Groceries", amount: -100},
+    { id:4, text: "Rent", amount: -500},
+    { id:5, text: "Credit Card", amount: 250}
 ]
+
+let transactions = dummyTransactions;
