@@ -23,7 +23,7 @@ body {
 .container {
     margin: 30px auto;
     width: 350px;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 
 h1 {
@@ -43,5 +43,7 @@ h4 {
 }
 
 .inc-exp-container {
-
+    background-color: #fff;
+    box-shadow: var(---box-shadow);
+    padding: 20px;
 }
