@@ -51,6 +51,7 @@ h4 {
     margin: 20px 0;
 }
 
+/* flex: 1 ka mtlb hai flex-grow, flex-basis, flex-shrink */
 
 .inc-exp-container > div {
     flex: 1;
