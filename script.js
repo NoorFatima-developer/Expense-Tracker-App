@@ -9,24 +9,31 @@ const amount = document.getElementById('amount');
 const btn = document.getElementById('btn');
 
 const dummyTransactions = [
-    { id:2, text: "Salaray", amount: 300},
-    { id:3, text: "Groceries", amount: -100},
-    { id:4, text: "Rent", amount: -500},
-    { id:5, text: "Credit Card", amount: 250}
+    { id:1, text: "Salaray", amount: 300},
+    { id:2, text: "Groceries", amount: -100},
+    { id:3, text: "Rent", amount: -500},
+    { id:4, text: "Credit Card", amount: 250}
 ]
 
 let transactions = dummyTransactions;
 
 function addTransactionDOM(transaction){
-    const sign = transaction[0].amount < 0 ? "-" : "+";
+    const sign = transaction.amount < 0 ? "-" : "+";
 
     const item = document.createElement("li");
-    item.classList.add(transaction[0].amount < 0 ? "minus" : "plus");
+    item.classList.add(transaction.amount < 0 ? "minus" : "plus");
     item.innerHTML = `
-    $(transaction[0].text)<span>${sign}${Math.abs(transaction[0].amount)}</span>
+    ${transaction.text}<span>${sign}${Math.abs(transaction.amount)}</span>
     <button class = "delete-btn" onclick = "">X</button>
     `
     list.appendChild(item);
 }
 
-addTransactionDOM(transactions)
+function displayTransactions() {
+    list.innerHTML = ""; // Clear the list before adding items
+    transactions.forEach(addTransactionDOM);
+}
+
+displayTransactions(transactions);
+
+// addTransactionDOM(transactions);
