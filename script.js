@@ -7,3 +7,7 @@ const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 const btn = document.getElementById('btn');
+
+const dummyTransactions = [
+    { id:1, text: "Flower", amount: -20}
+]
