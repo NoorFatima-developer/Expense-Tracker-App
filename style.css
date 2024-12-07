@@ -112,3 +112,7 @@ input[type="text"], input[type="number"]{
     padding: 10px;
     box-shadow: var(---box-shadow);
 }
+
+.btn:focus, .delete.btn:focus{
+    outline: 0;
+}
