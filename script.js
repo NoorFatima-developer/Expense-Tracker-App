@@ -19,6 +19,7 @@ let transactions = dummyTransactions;
 
 function addTransactionDOM(transaction){
     const sign = transaction.amount < 0 ? "-" : "+";
+
     const item = document.createElemen("li");
     item.classList.add(transaction.amount < 0 ? "minus" : "plus");
     item.innerHTML = `
@@ -27,3 +28,5 @@ function addTransactionDOM(transaction){
     `
     list.appendChild(item);
 }
+
+addTransactionDOM(transaction)
