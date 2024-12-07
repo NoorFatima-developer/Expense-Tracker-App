@@ -46,4 +46,13 @@ h4 {
     background-color: #fff;
     box-shadow: var(---box-shadow);
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+
+.inc-exp-container > div {
+    flex: 1;
+    text-align: center;
 }
