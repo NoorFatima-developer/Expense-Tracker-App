@@ -25,4 +25,5 @@ function addTransactionDOM(transaction){
     $(transaction.text)<span>${sign}${Math.abs(transaction.amount)}</span>
     <button class = "delete-btn" onclick = "">X</button>
     `
+    list.appendChild(item);
 }
