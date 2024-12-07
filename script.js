@@ -31,15 +31,21 @@ function addTransactionDOM(transaction){
 }
 
 function updateValues(){
-    // sari amounts ko lek araha hai and onko map k throught 1 new array m dal rha hai...
+    // Yeh line tumhare transactions array se sirf amounts nikal kar ek nayi array amounts bana rahi hai.
     const amounts = transactions.map(transaction => transaction.amount);
-    // sari amounts ko add kr rha hai...
+    //  Yeh total amount ka sum nikaal raha hai.(single value mai yhi kam reduce ka)
     const total = amounts.reduce((acc,item) => (acc +=item), 0).toFixed(2);
     // + amount ko filter kr rha hai...
     const income = amounts.filter(item => item > 0).reduce((acc,item) => (acc += item), 0).toFixed(2);
     // - amount ko filter kr rha hai...
-    const expense = amounts.tofilter(item => item < 0).reduce((acc,item) => (acc += item), 0) * 1;
+    // * 1: Yeh multiplication ensure karta hai ke tumhara result number type mein ho. (Optional hai)
+    const expense = amounts.filter(item => item < 0).reduce((acc,item) => ((acc += item), 0) * -1).toFixed(2);
+
+    balance.innerHTML = `$${total}`;
+    money_plus.innerHTML = `$${income}`;
+    money_minus.innerHTML = `$${expense}`;
 }
+
 
 function displayTransactions() {
     list.innerHTML = ""; // Clear the list before adding items
@@ -49,3 +55,8 @@ function displayTransactions() {
 displayTransactions(transactions);
 
 // addTransactionDOM(transactions);
+
+// Summary of map, reduce, filter usage:
+// map tumhare array ko transform karta hai (sari amounts ko ek naye array mein daalna).
+// filter tumhe specific values (positive ya negative) choose karne mein madad karta hai.
+// reduce tumhara kaam hai un filtered values ka sum nikaalna.
