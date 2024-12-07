@@ -116,3 +116,9 @@ input[type="text"], input[type="number"]{
 .btn:focus, .delete.btn:focus{
     outline: 0;
 }
+
+li {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
