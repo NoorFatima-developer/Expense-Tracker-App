@@ -113,7 +113,7 @@ input[type="text"], input[type="number"]{
     box-shadow: var(---box-shadow);
 }
 
-.btn:focus, .delete.btn:focus{
+.btn:focus, .delete-btn:focus{
     outline: 0;
 }
 
