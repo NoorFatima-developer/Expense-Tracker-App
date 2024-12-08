@@ -20,6 +20,9 @@ const btn = document.getElementById('btn');
 // let transactions = dummyTransactions;
 
 let transactions = [];
+const localStorageTransactions = JSON.parse(localStorage.getItem(transactions));
+
+
 
 function addTransactionDOM(transaction){
     const sign = transaction.amount < 0 ? "-" : "+";
@@ -36,11 +39,19 @@ function addTransactionDOM(transaction){
     list.appendChild(item);
 }
 
+    // Event delegation for deleting transaction(isklye hmy onclick ki jagah oper data-id = use krn pryga..)
+    // list.addEventListener('click', (e) => {
+    //     if (e.target.classLisat.contains('delete-btn')) {
+    //         const id = e.target.getAttribute('data-id');
+    //         removeTransaction(id);
+    //     }
+    // });
 
 // remove Transaction
 removeTransaction = function(id){
     transactions = transactions.filter((transaction) => transaction.id !== id);
     displayTransactions();
+    updateLocalStorage();
 }
 
 function updateValues(){
@@ -78,6 +89,7 @@ function addTransaction(event) {
     }
     transactions.push(transaction);
     addTransactionDOM(transaction);
+    updateLocalStorage();  // Update local storage after adding a transaction.
     updateValues();
     text.value = '';
     amount.value = '';
@@ -86,9 +98,14 @@ function addTransaction(event) {
 }
 
 // Generate by-default id:
-
 function generateID(){
     return Math.floor(Math.random() * 100000000);
+}
+
+
+// Update local-storage:
+function updateLocalStorage(){
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 function displayTransactions() {
